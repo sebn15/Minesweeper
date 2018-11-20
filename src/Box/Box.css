@@ -1,0 +1,12 @@
+.box {
+    height: 30px;
+    width: 30px;
+    border-radius: 3px;
+    border-radius: 5px;
+    border:2px;
+    border-style: solid;
+    transition: .5s;
+}
+.box:hover{
+    cursor: pointer;
+}
