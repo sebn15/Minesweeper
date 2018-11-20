@@ -1,44 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Minesweeper
 
-## Available Scripts
+This is a Minesweeper App made with React.js
 
-In the project directory, you can run:
+https://github.com/sebn15/Minesweeper
 
-### `npm start`
+## Setup
+```
+$ npm install
+```
+This will install all the node modules needed for the app. Make sure you installed Node to run npm commands.
 
-Runs the app in the development mode.<br>
+## Start 
+
+```
+$ npm start
+```
+Runs the mineswweper app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
+## Build
+```
+$ npm run build
+```
+Builds the app for production to the build folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The app has 3 components : App, Board and Box. The App conatains one Board wich contains several Boxes
 
-### `npm run eject`
+### Box
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This component's role is only to display a clickbox. It has no state and no method except render(). All it's propoerties are passed through props by the Board.<br/>
+The box displays an empty grey box if the box is not clicked yet, a flagged blue box if the box is flagged. If the box is clicked, it displays the number of neighbouring bombs, the higher is this number the redder is the box. If the box is a bomb, it displays a red box with a bomb icon.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Board
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This component displays the board of boxes and manage interractions between them. Is state contains an array containing the state of every box. the state of a box is an object containing a value and a number. The value corresponds to what is displayed on the box : "" => the box is unclikecd, 3 => the box has three neighbouring bombs, number>8 corresponds to a bomb (8 is the number of neighbours so you can't be not a bomb if the number is higher than 8). The value corresponds to what is "inside" the box : the value becomes equal to the box when the box is clicked.<br/>
+Many methods manage the board's behaviour : onClick to reveal a box, onRightClick to flag a box, etc...<br/>
+The size of the board are passed through props by the App.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### App
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The App has a Board, two sliders and a restart button. Its state contains the size of the board, which is triggered by the sliders.
